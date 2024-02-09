@@ -1,5 +1,8 @@
 Project based on: https://www.udemy.com/course/full-stack-react-ecommerce-with-nextjs/
 
+Packages:
+- npm i bootstrap-material-design
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
