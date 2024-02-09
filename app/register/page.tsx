@@ -8,7 +8,7 @@ export default function RegisterPage() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
 
-    async function handleSubmit(e: Event) {
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         try {
@@ -22,6 +22,14 @@ export default function RegisterPage() {
         }
     }
 
+    function isFormValid() : boolean {
+        return (name?.trim() ?? '') != '' && (email?.trim() ?? '') != '' && (password?.trim() ?? '') != '';
+    }
+
+    function isButtonDisabled() : boolean {
+        return loading || !isFormValid();
+    }
+
     return (
         <main>
             <div className="container">
@@ -30,6 +38,31 @@ export default function RegisterPage() {
                         <h2 className="mb-4">
                             Register
                         </h2>
+
+                        <form onSubmit={handleSubmit}>
+                            <input type="text" 
+                                value={name} 
+                                onChange={e => setName(e.target.value)} 
+                                className='form-control mb-3'
+                                placeholder='Name'
+                            />
+                            <input type="email" 
+                                value={email} 
+                                onChange={e => setEmail(e.target.value)} 
+                                className='form-control mb-3'
+                                placeholder='Email'
+                            />
+                            <input type="password" 
+                                value={password} 
+                                onChange={e => setPassword(e.target.value)} 
+                                className='form-control mb-3'
+                                placeholder='Password'
+                            />     
+
+                            <button className="btn btn-primary btn-raised" disabled={isButtonDisabled()}>                                
+                                {loading ? 'Please wait...' : 'Submit'}
+                            </button>                                                   
+                        </form>
                     </div>
                 </div>
             </div>
