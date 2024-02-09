@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import config from "./config.mjs";
+
+const nextConfig = {
+    env: {
+        DB_URI: config.DB_URI,
+    }
+};
 
 export default nextConfig;
