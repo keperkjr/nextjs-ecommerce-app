@@ -1,12 +1,15 @@
 "use client"
 import React from 'react'
-import { useState } from 'react'
+import toast from 'react-hot-toast'
+import {useRouter} from 'next/navigation'
 
 export default function RegisterPage() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [name, setName] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [loading, setLoading] = React.useState(false);
+
+    const router = useRouter();
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -14,11 +17,31 @@ export default function RegisterPage() {
         try {
             setLoading(true);
 
-        } catch (error) {
-            console.log(error);
+            const response = await fetch(`${process.env.API}/register`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    password
+                })
+            });
 
-        } finally {
+            const responseData = await response.json();
+
+            if (!response.ok) {
+                throw new Error(`An error occurred. ${responseData.error}`);
+            }
+            
+            toast.success('Registered successfully!');
+            router.push("/login");
+        } catch (error: any) {
+            console.log(error);
+            toast.error(String(error?.message || ''));
             setLoading(false);
+        } finally {
         }
     }
 

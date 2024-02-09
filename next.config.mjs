@@ -2,9 +2,7 @@
 import config from "./config.mjs";
 
 const nextConfig = {
-    env: {
-        DB_URI: config.DB_URI,
-    }
+    env: Object.assign({}, config)
 };
 
 export default nextConfig;

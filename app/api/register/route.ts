@@ -19,11 +19,11 @@ export async function POST(request: NextRequest) {
             status: 'success',
             user
         });
-    } catch (error) {
+    } catch (error: any) {
         console.log(error)
         return NextResponse.json({
             status: 'error',
-            error
+            error: String(error?.message || '')
         }, 
         {
             status: 500
