@@ -28,7 +28,12 @@ function TopNav() {
                             Logout
                         </a>                     
                     </>
-                ) 
+                ) : status == 'loading' ? 
+                (
+                    <a className='nav-link text-danger'>
+                        Loading...
+                    </a>
+                )
                 : 
                 (
                     <>
