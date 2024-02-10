@@ -3,6 +3,7 @@ Project based on: https://www.udemy.com/course/full-stack-react-ecommerce-with-n
 Packages:
 - npm i bootstrap-material-design
 - npm i react-hot-toast
+- npm i next-auth
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
