@@ -1,5 +1,6 @@
 'use client'
 import type { Metadata } from "next";
+import './globals.css'
 //import { Inter } from "next/font/google";
 import "bootstrap-material-design/dist/css/bootstrap-material-design.min.css"
 import TopNav from "@/components/TopNav";

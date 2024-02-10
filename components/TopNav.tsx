@@ -5,8 +5,8 @@ import { useSession, signOut } from 'next-auth/react'
 
 
 function TopNav() {
-    const { data, status } = useSession();
-    
+    let { data, status } = useSession();
+
     function logout() {
         signOut({ callbackUrl: "/login"})
     }
