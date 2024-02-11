@@ -22,14 +22,6 @@ export const authOptions: AuthOptions = {
                 password: { label: "Password", type: "password" }
             },            
 			async authorize(credentials, request) {
-                const userTemp = await new User({
-                    name: 'test',
-                    email: credentials?.email  || '',
-                    password: await byCrypt.hash(credentials?.password || '', 10)
-                })
-
-                return userTemp;
-                
 				dbConnect();
 				const user = await User.findOne({ email: credentials?.email  || '' });
 				if (!user) {
