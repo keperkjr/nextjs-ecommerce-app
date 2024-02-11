@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import toast from 'react-hot-toast'
-import {useRouter} from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { signIn } from "next-auth/react"
 
 export default function LoginPage() {
@@ -10,6 +10,8 @@ export default function LoginPage() {
     const [loading, setLoading] = React.useState(false);
 
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const callbackUrl = searchParams.get('callbackUrl') || '/';
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -28,7 +30,7 @@ export default function LoginPage() {
             }
             
             toast.success('Logged in successfully!');
-            router.push("/");
+            router.push(callbackUrl);
         } catch (error: any) {
             console.log(error);
             toast.error(String(error?.message || ''));
